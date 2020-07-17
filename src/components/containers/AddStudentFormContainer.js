@@ -28,7 +28,7 @@ class AddStudentFormContainer extends Component {
   };
   render() {
     return (
-      <AddCampusFormView
+      <AddStudentFormView
         firstName={this.state.name}
         lastName={this.state.name}
         imageUrl={this.state.imageUrl}

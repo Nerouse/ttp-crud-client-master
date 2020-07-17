@@ -6,7 +6,7 @@ import {
   AddCampusFormContainer,
   AllStudentsContainer,
   StudentContainer,
-  AddStudentsFormContainer,
+  AddStudentFormContainer,
 } from "../containers";
 
 const RoutesView = () => {
