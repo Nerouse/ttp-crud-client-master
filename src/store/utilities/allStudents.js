@@ -28,12 +28,14 @@ const addStudent = (student) => {
     payload: student,
   };
 };
+
 const editStudent = (student) =>{
   return{
     type: EDIT_STUDENT,
     payload: student,
   };
 };
+
 const deleteStudent = (id) => {
   return {
     type: DELETE_STUDENT,

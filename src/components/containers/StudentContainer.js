@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchStudentsThunk } from "../../thunks";
+import { fetchStudentThunk } from "../../thunks";
 
 import { StudentView } from "../views";
 
@@ -31,4 +31,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(StudentContainer);
+export default connect(mapState, mapDispatch)(StudentsContainer);

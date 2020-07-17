@@ -51,7 +51,7 @@ const AddStudentFormView = (props) => {
   );
 };
 
-AddCampusFormView.propTypes = {
+AddStudentFormView.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   firstName: PropTypes.string.isRequired,
