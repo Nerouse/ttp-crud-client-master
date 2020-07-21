@@ -3,45 +3,41 @@ import PropTypes from "prop-types";
 
 const EditCampusFormView = (props) => {
   return (
-    <div className="container">
-      <form onSubmit={props.handleSubmit} className="pt-4">
-        <div className="form-group">
-          <label>Name</label>
+    <div>
+      <form onSubmit={props.handleSubmit}>
+        <div>
+          Name:{" "}
           <input
-            className="form-control"
             value={props.name}
             name="name"
             onChange={props.handleChange}
           ></input>
         </div>
-        <div className="form-group">
-          <label>Address</label>
+        <div>
+          Address:{" "}
           <input
-            className="form-control"
             value={props.address}
             name="address"
             onChange={props.handleChange}
           ></input>
         </div>
-        <div className="form-group">
-          <label>Description</label>
+        <div>
+          Description:{" "}
           <input
-            className="form-control"
             value={props.description}
             name="description"
             onChange={props.handleChange}
           ></input>
         </div>
-        <div className="form-group mb-4">
-          <label>Image Url</label>
+        <div>
+          Image Url:{" "}
           <input
-            className="form-control"
             value={props.imageUrl}
             name="imageUrl"
             onChange={props.handleChange}
           ></input>
         </div>
-        <button className="btn btn-primary">Edit Campus</button>
+        <button>Edit Campus</button>
       </form>
     </div>
   );

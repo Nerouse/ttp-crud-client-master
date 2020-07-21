@@ -1,23 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 /**
  * 
- const campus = {
+ const student = {
   id: "3434454",
-  name: "Brooklyn College",
-  address: "Brooklyn",
+  firstName: "Bob",
+  lastName: "LeBlaw",
+  studentEmail: "blaw@aol.com",
+  studentGPA: "3.21",
   imageUrl: "",
-  description: "A college in Brooklyn",
 };
  */
 
 const StudentView = (props) => {
   return (
-    <>
+    <div>
+      <img src={props.student.imageUrl} alt="A student"/>
       <h1>{props.student.firstName} {props.student.lastName}</h1>
-      <h3>{props.student.studentEmail}</h3>
-      <p>{props.student.studentGPA}</p>
-    </>
+      <p>Student Email: {props.student.studentEmail}</p>
+      <p>Student GPA: {props.student.studentGPA}</p>
+      <Link to={`/students/${props.student.id}/edit`}>Edit</Link>
+      <button onClick={() => props.handleDelete(props.student.id)}>Delete</button>
+    </div>
   );
 };
 

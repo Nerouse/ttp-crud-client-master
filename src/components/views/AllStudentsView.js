@@ -1,23 +1,31 @@
 import React from "react";
-import "./styles/AllStudentsView.css";
+import "./styles/AllCampusesView.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const AllStudentsView = (props) => {
-  if (!props.allStudents.length) {
-    return <div className="all-students">There are no students</div>;
+const AllStudentsView = ({ allStudents, handleDelete }) => {
+  if (!allStudents.length) {
+    return (
+      <div className="all-campuses">
+        <p>There are no campuses</p>
+          <Link to="/students/new" className="add-campus"> New Student </Link>
+      </div>
+    );
   }
 
   return (
-    <div className="all-students">
-      {props.allStudents.map((student) => (
-        <div key={student.id}>
-          <Link to={`/students/${student.id}`}>
-            <h1>{student.firstName} {student.lastName}</h1>
-          </Link>
-          <p>{student.studentEmail}</p>
-        </div>
-      ))}
+    <div className="all-campuses">
+      <Link to="/students/new" className="add-campus">New Student</Link>
+      <div>
+        {allStudents.map((student) => (
+          <div key={student.id}>
+            <img src={student.imageUrl} width="100px" alt= "A student"/>
+            <p> {student.firstName} {student.lastName} </p>
+            <Link to={`/students/${student.id}`}>View Student</Link>
+            <button onClick={() => handleDelete(student.id)}>Delete</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

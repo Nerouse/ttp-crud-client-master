@@ -12,36 +12,62 @@ class AddCampusFormContainer extends Component {
       address: "",
       description: "",
       imageUrl: "",
+      validForm: "",
+      realtimeError: {},
     };
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "name") {
+      this.setState({
+        name: e.target.value 
+      }, this.handleValidation);
+    }
+    else {
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
+
+  handleValidation = () => {
+    const { name } = this.state;
+    let validForm = true;
+    let realtimeError = { ...this.state.realtimeError };
+    if (name.length < 1) {
+      validForm = false;
+      realtimeError.name = "No campus name found";
+    }
+    this.setState({ validForm, realtimeError });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addCampus(this.state);
+    if (this.state.validForm) {
+      this.props.addCampus(this.state);
+    }
   };
+
   render() {
     return (
-      <AddCampusFormView
-        name={this.state.name}
-        address={this.state.address}
-        description={this.state.description}
-        imageUrl={this.state.imageUrl}
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-      />
+      <div>
+        {this.state.validForm ? "" : this.state.realtimeError.name}
+        <AddCampusFormView
+          name={this.state.name}
+          address={this.state.address}
+          description={this.state.description}
+          imageUrl={this.state.imageUrl}
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+        />
+      </div>
     );
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
-    addCampus: (campus) => dispatch(addCampusThunk(campus)),
+    addCampus: (campus) => dispatch(addCampusThunk(campus, ownProps)),
   };
 };
 
