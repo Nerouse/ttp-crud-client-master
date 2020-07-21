@@ -10,40 +10,72 @@ class AddStudentFormContainer extends Component {
     this.state = {
       firstName: "",
       lastName: "",
-      imageUrl: "",
       studentEmail: "",
       studentGPA: "",
+      imageUrl: "",
+      validForm: "",
+      realtimeError: {},
     };
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "firstName") {
+      this.setState({
+        firstName: e.target.value 
+      }, this.handleValidation);
+    }
+    else if (e.target.name === "lastName") {
+      this.setState({
+        lastName: e.target.value 
+      }, this.handleValidation);
+    }
+    else {
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
+
+  handleValidation = () => {
+    const { firstName } = this.state;
+    const { lastName } = this.state;
+    let validForm = true;
+    let realtimeError = { ...this.state.realtimeError };
+    if (firstName.length < 1 || lastName.length < 1) {
+      validForm = false;
+      realtimeError.name = "No name found";
+    }
+    this.setState({ validForm, realtimeError });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addStudent(this.state);
+    if (this.state.validForm) {
+      this.props.addStudent(this.state);
+    }
   };
+
   render() {
     return (
-      <AddStudentFormView
-        firstName={this.state.name}
-        lastName={this.state.name}
-        imageUrl={this.state.imageUrl}
-        studentEmail={this.state.name}
-        studentGPA={this.state.name}
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-      />
+      <div>
+        {this.state.validForm ? "" : this.state.realtimeError.name}
+        <AddStudentFormView
+          firstName={this.state.firstName}
+          lastName={this.state.lastName}
+          studentEmail={this.state.studentEmail}
+          studentGPA={this.state.studentGPA}
+          imageUrl={this.state.imageUrl}
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+        />
+      </div>
     );
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
-    addStudent: (student) => dispatch(addStudentThunk(student)),
+    addStudent: (student) => dispatch(addStudentThunk(student, ownProps)),
   };
 };
 

@@ -3,17 +3,17 @@ import {Link} from "react-router-dom";
 
 const NavBarView = (props) =>{
 	return (
-		<nav className = "nav">
-			<Link to="/"> Home </Link>
+	<nav className = "nav">
+	    <Link className = "button" to="/"> Home </Link>
 
-        <Link to="/campuses" >
+        <Link className = "button" to="/campuses" >
           Campuses
         </Link>
-        <Link to="/students">
+        <Link className = "button" to="/students">
           Students
         </Link>
 
-</nav>
-		);
+	</nav>
+	);
 };
 export default NavBarView;

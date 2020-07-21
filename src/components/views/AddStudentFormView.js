@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const AddStudentFormView = (props) => {
   return (
@@ -11,6 +10,7 @@ const AddStudentFormView = (props) => {
             value={props.firstName}
             name="firstName"
             onChange={props.handleChange}
+            required
           ></input>
         </div>
         <div>
@@ -19,22 +19,17 @@ const AddStudentFormView = (props) => {
             value={props.lastName}
             name="lastName"
             onChange={props.handleChange}
+            required
           ></input>
         </div>
         <div>
-          Image Url:{" "}
-          <input
-            value={props.imageUrl}
-            name="imageUrl"
-            onChange={props.handleChange}
-          ></input>
-        </div>
-        <div>
-          Student Email:{" "}
+         Student Email:{" "}
           <input
             value={props.studentEmail}
             name="studentEmail"
             onChange={props.handleChange}
+            required
+            type="email"
           ></input>
         </div>
         <div>
@@ -43,22 +38,26 @@ const AddStudentFormView = (props) => {
             value={props.studentGPA}
             name="studentGPA"
             onChange={props.handleChange}
+            required
+            type="number"
+            step="0.01"
+            min="0"
+            max="4"
           ></input>
         </div>
-        <button>Create Student</button>
+        <div>
+          Image Url:{" "}
+          <input
+            value={props.imageUrl}
+            name="imageUrl"
+            onChange={props.handleChange}
+            required
+          ></input>
+        </div>
+        <button>Add Student</button>
       </form>
     </div>
   );
-};
-
-AddStudentFormView.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  studentEmail: PropTypes.string.isRequired,
-  studentGPA: PropTypes.string.isRequired,
 };
 
 export default AddStudentFormView;
